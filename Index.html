@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Master - Complete Typing Practice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen">
+        <div class="loader"></div>
+        <h2 style="color: white;">Loading Typing Master...</h2>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1><i class="fas fa-keyboard"></i> Typing Master</h1>
+            <p>Improve your typing speed, accuracy, and skills</p>
+            <div class="creator-info">
+                Created by <a href="https://instagram.com/diwyankk" target="_blank">@diwyankk</a>
+            </div>
+        </header>
+        
+        <!-- Navigation Tabs -->
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="typing-test">
+                <i class="fas fa-typo3"></i> Typing Test
+            </button>
+            <button class="tab-btn" data-tab="learn-typing">
+                <i class="fas fa-graduation-cap"></i> Learn Typing
+            </button>
+            <button class="tab-btn" data-tab="exam-practice">
+                <i class="fas fa-file-alt"></i> Exam Practice
+            </button>
+            <button class="tab-btn" data-tab="typing-games">
+                <i class="fas fa-gamepad"></i> Typing Games
+            </button>
+        </nav>
+        
+        <!-- Typing Test Tab -->
+        <section class="tab-content active" id="typing-test">
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <button class="selector-btn active" id="englishBtn">English</button>
+                <button class="selector-btn" id="hindiBtn">Hindi</button>
+            </div>
+            
+            <!-- Clock Mode Selector -->
+            <div class="clock-selector">
+                <button class="selector-btn active" id="timerClockBtn">Timer Mode</button>
+                <button class="selector-btn" id="freeClockBtn">Free Practice</button>
+            </div>
+            
+            <!-- Paragraph Selection -->
+            <div class="section-card">
+                <h3 class="section-title"><i class="fas fa-list-ol"></i> Select Paragraph</h3>
+                <div class="paragraph-grid" id="paragraphList"></div>
+            </div>
+            
+            <!-- Typing Test Area -->
+            <div class="section-card">
+                <div class="test-header">
+                    <div class="timer" id="timer">00:00</div>
+                    <div class="controls">
+                        <button class="btn btn-primary" id="startBtn">
+                            <i class="fas fa-play"></i> Start Test
+                        </button>
+                        <button class="btn btn-secondary" id="resetBtn" disabled>
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                        <button class="btn btn-success" id="pauseBtn" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="typing-display" id="paragraphDisplay">
+                    Select a paragraph to begin typing test
+                </div>
+                
+                <textarea class="typing-input" id="typingArea" 
+                    placeholder="Start typing here... Backspace allowed within current word only"
+                    disabled></textarea>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="section-card" id="resultsSection" style="display: none;">
+                <h3 class="section-title"><i class="fas fa-chart-line"></i> Test Results</h3>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-label">WPM</div>
+                        <div class="result-value" id="wpmResult">0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Accuracy</div>
+                        <div class="result-value" id="accuracyResult">0%</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Time</div>
+                        <div class="result-value" id="timeResult">0s</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Words</div>
+                        <div class="result-value" id="wordsResult">0</div>
+                    </div>
+                </div>
+                
+                <div class="share-buttons">
+                    <button class="btn btn-primary" id="shareBtn">
+                        <i class="fas fa-share"></i> Share Score
+                    </button>
+                    <button class="btn btn-success" id="screenshotBtn">
+                        <i class="fas fa-camera"></i> Screenshot
+                    </button>
+                    <button class="btn btn-warning" onclick="window.print()">
+                        <i class="fas fa-print"></i> Print Results
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Learn Typing Tab -->
+        <section class="tab-content" id="learn-typing">
+            <div class="learn-grid">
+                <div class="section-card">
+                    <h3 class="section-title"><i class="fas fa-hands"></i> Finger Placement</h3>
+                    <p>Proper finger placement is key to fast typing:</p>
+                    
+                    <div class="finger-guide">
+                        <div class="finger-key">A (Pinky)</div>
+                        <div class="finger-key">S (Ring)</div>
+                        <div class="finger-key" style="background: var(--secondary);">D (Middle)</div>
+                        <div class="finger-key" style="background: var(--secondary);">F (Index)</div>
+                        <div class="finger-key" style="background: var(--secondary);">J (Index)</div>
+                        <div class="finger-key" style="background: var(--secondary);">K (Middle)</div>
+                        <div class="finger-key">L (Ring)</div>
+                        <div class="finger-key">; (Pinky)</div>
+                    </div>
+                    
+                    <h4 style="margin-top: 20px; color: var(--primary);">Home Row Position</h4>
+                    <p>Keep fingers on <strong>A S D F J K L ;</strong> when not typing</p>
+                </div>
+                
+                <div class="section-card">
+                    <h3 class="section-title"><i class="fas fa-dumbbell"></i> Practice Exercises</h3>
+                    <div class="practice-list">
+                        <div class="practice-item">
+                            <div>
+                                <strong>Home Row Practice</strong>
+                                <p>Type: asdf jkl; asdf jkl;</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="loadExercise('asdf jkl; asdf jkl; fdsa ;lkj fdsa ;lkj', 'Home Row Practice')">
+                                Start
+                            </button>
+                        </div>
+                        <div class="practice-item">
+                            <div>
+                                <strong>Top Row Practice</strong>
+                                <p>Type: qwert yuiop qwert</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="loadExercise('qwert yuiop qwert yuiop poiuyt rewq', 'Top Row Practice')">
+                                Start
+                            </button>
+                        </div>
+                        <div class="practice-item">
+                            <div>
+                                <strong>Bottom Row Practice</strong>
+                                <p>Type: zxcvb nm,./ zxcvb</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="loadExercise('zxcvb nm,./ zxcvb nm,./ /.,mn bvcxz', 'Bottom Row Practice')">
+                                Start
+                            </button>
+                        </div>
+                        <div class="practice-item">
+                            <div>
+                                <strong>All Letters Practice</strong>
+                                <p>The quick brown fox jumps</p>
+                            </div>
+                            <button class="btn btn-primary btn-sm" onclick="loadExercise('The quick brown fox jumps over the lazy dog', 'All Letters Practice')">
+                                Start
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Exam Practice Tab -->
+        <section class="tab-content" id="exam-practice">
+            <div class="exam-grid">
+                <div class="exam-card ssc">
+                    <h3 class="section-title"><i class="fas fa-university"></i> SSC Exams</h3>
+                    <p>Typing test practice for SSC CHSL, JHT, and other exams</p>
+                    <button class="btn btn-primary" style="margin-top: 15px;" onclick="loadExamPractice('SSC')">
+                        Start Practice
+                    </button>
+                </div>
+                
+                <div class="exam-card banking">
+                    <h3 class="section-title"><i class="fas fa-landmark"></i> Banking Exams</h3>
+                    <p>Practice for SBI, RBI, and other banking exams</p>
+                    <button class="btn btn-primary" style="margin-top: 15px;" onclick="loadExamPractice('Banking')">
+                        Start Practice
+                    </button>
+                </div>
+                
+                <div class="exam-card">
+                    <h3 class="section-title"><i class="fas fa-train"></i> Railway Exams</h3>
+                    <p>RRB NTPC, Group D typing practice</p>
+                    <button class="btn btn-primary" style="margin-top: 15px;" onclick="loadExamPractice('Railway')">
+                        Start Practice
+                    </button>
+                </div>
+                
+                <div class="exam-card">
+                    <h3 class="section-title"><i class="fas fa-file-contract"></i> UPSSSC Exams</h3>
+                    <p>Practice for Lekhpal, VDO typing tests</p>
+                    <button class="btn btn-primary" style="margin-top: 15px;" onclick="loadExamPractice('UPSSSC')">
+                        Start Practice
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Typing Games Tab -->
+        <section class="tab-content" id="typing-games">
+            <!-- Games Selection -->
+            <div id="gamesSelection">
+                <div class="games-grid">
+                    <div class="game-card" onclick="startGame('speed')">
+                        <div class="game-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Speed Typing</h3>
+                        <p>Type falling words before they hit bottom</p>
+                        <div style="margin-top: 15px;">
+                            <span class="btn btn-primary">Play Now</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card" onclick="startGame('shooting')">
+                        <div class="game-icon"><i class="fas fa-crosshairs"></i></div>
+                        <h3>Word Shooting</h3>
+                        <p>Shoot correct words before time runs out</p>
+                        <div style="margin-top: 15px;">
+                            <span class="btn btn-primary">Play Now</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card" onclick="window.open('https://www.typing.com/student/games', '_blank')">
+                        <div class="game-icon"><i class="fas fa-gamepad"></i></div>
+                        <h3>More Games</h3>
+                        <p>Visit Typing.com for more typing games</p>
+                        <div style="margin-top: 15px;">
+                            <span class="btn btn-secondary">Visit Site</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card" onclick="window.open('https://www.typingclub.com/', '_blank')">
+                        <div class="game-icon"><i class="fas fa-keyboard"></i></div>
+                        <h3>Typing Club</h3>
+                        <p>Complete typing lessons and games</p>
+                        <div style="margin-top: 15px;">
+                            <span class="btn btn-secondary">Visit Site</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Speed Typing Game Screen -->
+            <div class="game-screen" id="speedGame">
+                <div class="game-header">
+                    <h3 class="section-title"><i class="fas fa-bolt"></i> Speed Typing</h3>
+                    <button class="btn btn-secondary" onclick="exitGame()">
+                        <i class="fas fa-times"></i> Exit Game
+                    </button>
+                </div>
+                
+                <div class="game-stats">
+                    <div class="stat-box">
+                        <div>Score</div>
+                        <div class="result-value" id="gameScore">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div>Time</div>
+                        <div class="result-value" id="gameTime">60</div>
+                    </div>
+                    <div class="stat-box">
+                        <div>Words</div>
+                        <div class="result-value" id="wordsTyped">0</div>
+                    </div>
+                </div>
+                
+                <div class="game-area" id="speedGameArea">
+                    <!-- Falling words will appear here -->
+                </div>
+                
+                <div style="text-align: center;">
+                    <input type="text" id="gameInput" placeholder="Type the falling words here..." 
+                        class="typing-input" style="max-width: 500px; margin: 0 auto;">
+                </div>
+            </div>
+            
+            <!-- Word Shooting Game Screen -->
+            <div class="game-screen" id="shootingGame">
+                <div class="game-header">
+                    <h3 class="section-title"><i class="fas fa-crosshairs"></i> Word Shooting</h3>
+                    <button class="btn btn-secondary" onclick="exitGame()">
+                        <i class="fas fa-times"></i> Exit Game
+                    </button>
+                </div>
+                
+                <div class="game-stats">
+                    <div class="stat-box">
+                        <div>Score</div>
+                        <div class="result-value" id="shootingScore">0</div>
+                    </div>
+                    <div class="stat-box">
+                        <div>Target</div>
+                        <div class="result-value" id="targetWord">---</div>
+                    </div>
+                    <div class="stat-box">
+                        <div>Accuracy</div>
+                        <div class="result-value" id="shootingAccuracy">100%</div>
+                    </div>
+                </div>
+                
+                <div class="game-area" id="shootingGameArea">
+                    <!-- Target words will appear here -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <p>Type the words that match the target word above</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Footer -->
+        <footer>
+            <p>Typing Master &copy; 2023 | Created by <a href="https://instagram.com/diwyankk" target="_blank">@diwyankk</a></p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">
+                Practice daily to improve your typing speed and accuracy
+            </p>
+        </footer>
+    </div>
+
+    <!-- External Libraries -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+  </html>
